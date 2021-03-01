@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1614209565 source:c:\users\cliente\documents\distancia_cidades\main.c
+1614289987 source:c:\users\cliente\documents\distancia_cidades\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<locale.h>
+	<ctype.h>
 
