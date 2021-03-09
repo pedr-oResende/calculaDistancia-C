@@ -3,14 +3,15 @@
 #include <string.h>
 #include <locale.h>
 #include <ctype.h>
+#define tamanho 5
 
 void clear_keyboard_buffer(void);
-void caractereEspecial(void); // método para permitir caracteres especiais no programa
+void caractereEspecial(void);
 void printCidades(int);
-void preencheMatriz(int, int[5][5]);
-int calculaDistancia(int,int[5][5], char*, char*); // metodo que retorna a distancia total da rota
+void preencheMatriz(int, int[tamanho][tamanho]);
+int calculaDistancia(int,int[tamanho][tamanho], char*, char*);
 void printResultado(int, char*);
-int indexOfCidade(char); // metodo transforma a cidade (char) em um numero correspondente na matriz
+int indexOfCidade(char);
 void capturarErros(int, int*);
 
 int main()
@@ -35,7 +36,7 @@ int main()
         }
     }
 
-    int matriz[5][5];
+    int matriz[tamanho][tamanho];
 
     preencheMatriz(numeroCidade, matriz);
 
@@ -67,6 +68,7 @@ int main()
 
 // Métodos
 
+//Função para limpar o buffer do teclado
 void clear_keyboard_buffer()
 {
     int c = 0;
@@ -74,13 +76,15 @@ void clear_keyboard_buffer()
     return;
 }
 
+// método para permitir caracteres especiais no programa
 void caractereEspecial()
 {
     printf("%s",setlocale(LC_ALL,""));
     system("cls");
 }
 
-void preencheMatriz(int numeroCidade, int matriz[5][5])
+//Função para preencher a matriz
+void preencheMatriz(int numeroCidade, int matriz[tamanho][tamanho])
 {
     for (int i = 0; i < numeroCidade; i++)
     {
@@ -104,6 +108,7 @@ void preencheMatriz(int numeroCidade, int matriz[5][5])
     }
 }
 
+// Função para escrever as cidades que serão calculadas
 void printCidades(int numeroCidade)
 {
     printf("Cidades:");
@@ -113,7 +118,8 @@ void printCidades(int numeroCidade)
     }
 }
 
-int calculaDistancia(int numeroCidade,int matriz[5][5], char *cidadesCalculadas, char *rota)
+// metodo que retorna a distancia total da rota
+int calculaDistancia(int numeroCidade,int matriz[tamanho][tamanho], char *cidadesCalculadas, char *rota)
 {
     char vetorAuxiliar[20] = "";
     int soma = 0, count = 0, aux = 0;
@@ -159,6 +165,7 @@ int calculaDistancia(int numeroCidade,int matriz[5][5], char *cidadesCalculadas,
     return soma;
 }
 
+// Função para escrever o resultado do cálculo
 void printResultado(int distanciaTotal, char *cidadesCalculadas)
 {
     int flag = 0;
@@ -175,11 +182,12 @@ void printResultado(int distanciaTotal, char *cidadesCalculadas)
     }
 }
 
-int indexOfCidade(char nomeCidade)
+int indexOfCidade(char nomeCidade) // Método transforma a cidade (char) em um numero correspondente na matriz
 {
     return (int) nomeCidade - 65;
 }
 
+// Função para tratar erros na rota
 void capturarErros(int distanciaTotal, int *flag)
 {
     system("cls");
